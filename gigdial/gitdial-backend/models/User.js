@@ -1,0 +1,186 @@
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+
+const userSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: String,
+        required: false,
+    },
+    city: {
+        type: String,
+        required: false,
+    },
+    address: {
+        type: String,
+        required: false,
+    },
+    skills: [{
+        type: String,
+    }],
+    aadhaarCard: {
+        type: String,
+        required: false,
+    },
+    panCard: {
+        type: String,
+        required: false,
+    },
+    serviceDescription: {
+        type: String,
+        required: false,
+    },
+    experience: {
+        type: Number,
+        default: 0
+    },
+    category: {
+        type: String,
+        required: false
+    },
+    serviceType: {
+        type: String,
+        enum: ['Residency', 'Commercial', 'Both'],
+        default: 'Residency'
+    },
+    profileImage: {
+        type: String,
+        required: false,
+    },
+    mainCategory: {
+        type: String,
+        required: false
+    },
+    dob: {
+        type: String,
+        required: false
+    },
+    languages: [{
+        type: String
+    }],
+    savedAddresses: [{
+        type: {
+            type: String,
+            enum: ['home', 'work', 'other'],
+            default: 'home'
+        },
+        name: String,
+        phone: String,
+        addressLine1: String,
+        addressLine2: String,
+        city: String,
+        state: String,
+        pincode: String,
+        isDefault: {
+            type: Boolean,
+            default: false
+        }
+    }],
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Gig'
+    }],
+    isProvider: {
+        type: Boolean,
+        default: false,
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    role: {
+        type: String,
+        enum: ['customer', 'worker', 'admin'],
+        default: 'customer'
+    },
+    kycStatus: {
+        type: String,
+        enum: ['pending', 'approved', 'rejected'],
+        default: 'pending'
+    },
+    isApproved: {
+        type: Boolean,
+        default: false
+    },
+    subscription: {
+        plan: {
+            type: String,
+            enum: ['monthly', 'none'],
+            default: 'none'
+        },
+        startDate: {
+            type: Date
+        },
+        endDate: {
+            type: Date
+        },
+        isActive: {
+            type: Boolean,
+            default: false
+        },
+        refundStatus: {
+            type: String,
+            enum: ['none', 'pending', 'processed', 'rejected'],
+            default: 'none'
+        },
+        refundRequestedAt: {
+            type: Date
+        },
+        refundProcessedAt: {
+            type: Date
+        },
+        refundReason: {
+            type: String
+        }
+    },
+    rating: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    numReviews: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    isBlocked: {
+        type: Boolean,
+        default: false
+    },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date
+}, {
+    timestamps: true,
+});
+
+// Method to check password match
+userSchema.methods.matchPassword = async function (enteredPassword) {
+    return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Middleware to hash password before saving
+userSchema.pre('save', async function () {
+    if (!this.isModified('password')) {
+        return;
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+});
+
+const User = mongoose.model('User', userSchema);
+
+export default User;
