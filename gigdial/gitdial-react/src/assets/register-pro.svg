@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- User Profile Silhouette -->
-  <circle cx="32" cy="25" r="7.5" fill="#3B5998" />
-  <path d="M18 45c0-5 6-8.5 14-8.5s14 3.5 14 8.5z" fill="#3B5998" />
-  
-  <!-- Star Badge on Bottom-Right Shoulder -->
-  <!-- Star points centered around (44, 42) -->
-  <polygon points="44,36 46,40.5 51,41 47.5,44.5 48.5,49.5 44,47 39.5,49.5 40.5,44.5 37,41 42,40.5" fill="#2563EB" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round" />
-</svg>

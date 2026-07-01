@@ -203,6 +203,7 @@
   padding: 24px;
   box-sizing: border-box;
   transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
 }
 
 .mobile-drawer.open {

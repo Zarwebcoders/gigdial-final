@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Background professional (Green) -->
-  <circle cx="38" cy="33" r="5" fill="#10B981" />
-  <path d="M30 48c0-3.5 3.5-5.5 8-5.5s8 2 8 5.5z" fill="#10B981" />
-  
-  <!-- Foreground professional (Grey) -->
-  <circle cx="26" cy="29" r="6.5" fill="#64748B" />
-  <path d="M15 48c0-4.5 4.5-7 11-7s11 2.5 11 7z" fill="#64748B" />
-</svg>

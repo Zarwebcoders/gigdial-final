@@ -99,13 +99,6 @@ export default function Navbar() {
           <Link to="/" className="navbar-logo" onClick={toggleMobileMenu}>
             <img src={logoImg} alt="GigDial Logo" className="navbar-logo-img" />
           </Link>
-          <button
-            className="drawer-close"
-            onClick={toggleMobileMenu}
-            aria-label="Close menu"
-          >
-            &times;
-          </button>
         </div>
         <ul className="mobile-links">
           <li>

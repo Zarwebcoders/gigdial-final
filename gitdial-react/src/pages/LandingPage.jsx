@@ -977,8 +977,8 @@ export default function LandingPage() {
                     </svg>
                   </span>
                   <div className="contact-emails">
-                    <span>support@gigdial.com</span>
-                    <span>gigdial@gmail.com</span>
+                    <a href="mailto:support@gigdial.com" style={{color: 'inherit', textDecoration: 'none'}}>support@gigdial.com</a>
+                    <a href="mailto:gigdial@gmail.com" style={{color: 'inherit', textDecoration: 'none'}}>gigdial@gmail.com</a>
                   </div>
                 </div>
                 <div className="contact-item">
@@ -987,7 +987,7 @@ export default function LandingPage() {
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
                   </span>
-                  <span>+91 63561 63562</span>
+                  <a href="tel:+919429258745" style={{color: 'inherit', textDecoration: 'none'}}>+91 94292 58745</a>
                 </div>
                 <div className="contact-item">
                   <span className="contact-icon-wrapper">
