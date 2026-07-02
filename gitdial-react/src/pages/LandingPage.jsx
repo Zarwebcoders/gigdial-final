@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -160,6 +160,23 @@ export default function LandingPage() {
       else if (user.role === 'admin') navigate('/admin', { replace: true });
     }
   }, [user, navigate]);
+
+  // Scroll-reveal: add .visible class when .reveal elements enter the viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach((el) => observer.observe(el));
+    return () => reveals.forEach((el) => observer.unobserve(el));
+  }, []);
 
   const toggleFaq = (key) => {
     setActiveFaq(prev => ({
@@ -355,7 +372,7 @@ export default function LandingPage() {
 
         {/* Bottom Statistics Strip */}
         <section className="stats-strip-container">
-          <div className="stats-strip">
+          <div className="stats-strip reveal">
             {/* Stat Item 1 - Services (network hub) */}
             <div className="stat-item" onClick={() => navigate('/services')} style={{ cursor: 'pointer' }}>
               <div className="stat-icon-wrapper">
@@ -427,7 +444,7 @@ export default function LandingPage() {
         {/* Services Grid Section */}
         <section className="services-section" id="services">
           <div className="services-container">
-            <h2 className="services-title">
+            <h2 className="services-title reveal">
               Services Available on <span className="services-brand-gig">Gig</span><span className="services-brand-dial">Dial</span>
             </h2>
             

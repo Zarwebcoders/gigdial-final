@@ -82,6 +82,96 @@
   background: var(--code-bg);
 }
 
+/* =============================================
+   ANIMATIONS & KEYFRAMES
+   ============================================= */
+
+/* Fade up — hero content entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in — simple opacity */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Gentle float — for floating badge */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Subtle scale-in for cards */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Shimmer pulse for stat numbers */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll-reveal class (applied via JS) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child groups */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
 /* Hero Section Styles */
 .hero-section {
   width: 100%;
@@ -105,6 +195,7 @@
 .hero-left {
   flex: 1.1;
   max-width: 600px;
+  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .hero-right {
@@ -112,6 +203,8 @@
   display: flex;
   justify-content: center;
   position: relative;
+  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 0.15s;
 }
 
 /* Hero Typography */
@@ -333,7 +426,7 @@
   gap: 14px;
   box-shadow: 0 10px 30px rgba(0, 51, 219, 0.1);
   z-index: 3;
-  animation: floatBadge 3.5s ease-in-out infinite;
+  animation: floatBadge 3.5s ease-in-out infinite, fadeIn 0.6s ease 0.5s both;
 }
 
 .badge-icon-bg {
@@ -402,6 +495,11 @@
   gap: 14px;
   flex: 1;
   justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
 }
 
 .stat-icon-wrapper {
@@ -414,6 +512,12 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.stat-item:hover .stat-icon-wrapper {
+  background-color: #eff6ff;
+  transform: scale(1.1);
 }
 
 .stat-svg {
@@ -612,12 +716,27 @@
   box-sizing: border-box;
   min-height: 84px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  border-color: #e2e8f0;
-  box-shadow: 0 10px 20px -3px rgba(0, 51, 219, 0.06), 0 4px 12px -2px rgba(0, 51, 219, 0.03);
+  transform: translateY(-5px) scale(1.02);
+  border-color: #c7d8ff;
+  box-shadow: 0 12px 24px -4px rgba(0, 51, 219, 0.1), 0 4px 12px -2px rgba(0, 51, 219, 0.05);
+}
+
+.service-card:hover .service-icon-wrapper {
+  transform: scale(1.15);
+}
+
+.service-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
 }
 
 .service-icon-wrapper {
