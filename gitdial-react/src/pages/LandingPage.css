@@ -2885,3 +2885,122 @@
     padding: 30px 24px;
   }
 }
+
+/* Trust Badges Section */
+.trust-badges-section {
+  width: 100%;
+  padding: 10px 24px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.trust-badges-container {
+  max-width: 1232px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 16px;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 170px;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.trust-badge-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.trust-badge-icon-wrapper.bg-green {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.trust-badge-icon-wrapper.bg-blue {
+  background-color: rgba(0, 51, 219, 0.1);
+}
+
+.trust-badge-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.trust-badge-svg.text-green {
+  color: #10b981;
+}
+
+.trust-badge-svg.text-blue {
+  color: #0033DB;
+}
+
+.trust-badge-gst-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.trust-badge-gst-text.text-green {
+  color: #10b981;
+}
+
+.trust-badge-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-badge-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.trust-badge-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 2px 0 0 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 1024px) {
+  .trust-badges-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+  }
+  
+  .trust-badge-item {
+    flex: none;
+    width: calc(50% - 12px);
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .trust-badge-item {
+    width: 100%;
+  }
+}

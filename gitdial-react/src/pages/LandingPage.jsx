@@ -280,6 +280,79 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Trust Badges Row */}
+        <section className="trust-badges-section">
+          <div className="trust-badges-container">
+            {/* Badge 1: Registered Company */}
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon-wrapper bg-green">
+                <svg viewBox="0 0 24 24" className="trust-badge-svg text-green" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 11 2 2 4-4"/>
+                </svg>
+              </div>
+              <div className="trust-badge-text">
+                <h4 className="trust-badge-title">Registered Company</h4>
+                <p className="trust-badge-desc">Legally Registered</p>
+              </div>
+            </div>
+
+            {/* Badge 2: Secure Payments */}
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon-wrapper bg-blue">
+                <svg viewBox="0 0 24 24" className="trust-badge-svg text-blue" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div className="trust-badge-text">
+                <h4 className="trust-badge-title">Secure Payments</h4>
+                <p className="trust-badge-desc">100% Safe & Secure</p>
+              </div>
+            </div>
+
+            {/* Badge 3: GST Registered */}
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon-wrapper bg-green">
+                <div className="trust-badge-gst-text text-green">GST</div>
+              </div>
+              <div className="trust-badge-text">
+                <h4 className="trust-badge-title">GST Registered</h4>
+                <p className="trust-badge-desc">Verified GST Number</p>
+              </div>
+            </div>
+
+            {/* Badge 4: CIN Verified */}
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon-wrapper bg-blue">
+                <svg viewBox="0 0 24 24" className="trust-badge-svg text-blue" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <div className="trust-badge-text">
+                <h4 className="trust-badge-title">CIN Verified</h4>
+                <p className="trust-badge-desc">Corporate Identity No.</p>
+              </div>
+            </div>
+
+            {/* Badge 5: Privacy Protected */}
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon-wrapper bg-green">
+                <svg viewBox="0 0 24 24" className="trust-badge-svg text-green" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                  <path d="M8 18a4 4 0 0 1 8 0"/>
+                </svg>
+              </div>
+              <div className="trust-badge-text">
+                <h4 className="trust-badge-title">Privacy Protected</h4>
+                <p className="trust-badge-desc">Your Data is Safe</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Bottom Statistics Strip */}
         <section className="stats-strip-container">
           <div className="stats-strip">
