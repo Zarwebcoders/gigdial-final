@@ -15,6 +15,7 @@ import ManageWithdrawals from './ManageWithdrawals';
 import ManageRefunds from './ManageRefunds';
 import ManageBlogs from './ManageBlogs';
 import FullHistory from './FullHistory';
+import ManageVisitorLeads from './ManageVisitorLeads';
 
 const AdminPanel = () => {
     return (
@@ -32,6 +33,7 @@ const AdminPanel = () => {
                 <Route path="content" element={<ManageContent />} />
                 <Route path="cities" element={<ManageCities />} />
                 <Route path="blogs" element={<ManageBlogs />} />
+                <Route path="visitor-leads" element={<ManageVisitorLeads />} />
                 <Route path="settings" element={<AdminSettings />} />
                 <Route path="history" element={<FullHistory />} />
                 <Route path="*" element={<Navigate to="" replace />} />

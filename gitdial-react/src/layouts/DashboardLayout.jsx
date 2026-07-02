@@ -81,6 +81,7 @@ const DashboardLayout = ({ children, role = 'worker' }) => {
         { icon: LayoutDashboard, label: t('dashboard'), path: '/admin' },
         { icon: Briefcase, label: t('manageWorkers'), path: '/admin/workers' },
         { icon: Users, label: t('manageCustomers'), path: '/admin/customers' },
+        { icon: User, label: 'Visitor Leads', path: '/admin/visitor-leads' },
         { icon: Calendar, label: t('bookings'), path: '/admin/bookings' },
         // { icon: DollarSign, label: 'Withdrawals', path: '/admin/withdrawals' },
         { icon: Repeat, label: 'Refunds', path: '/admin/refunds' },

@@ -2,6 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { 
+  Paintbrush, Zap, Droplet, Component, Hammer, Brush, Tv, Bug, Scissors, 
+  Truck, ArrowUp, Package, Box, Car, Send, Utensils, Calendar, Camera, 
+  Flower, GlassWater, Music, Smartphone, Home as HomeIcon, Wifi, Megaphone, 
+  Code, Cpu, BookOpen, Briefcase, TrendingUp, UserCheck, Languages, Award, 
+  Heart, Sprout, HeartHandshake, Compass, ChefHat, Gift, Dumbbell, Grid, 
+  Moon, PenTool, X, Search
+} from 'lucide-react';
 
 import logoImg from '../assets/logo.png';
 import heroImg from '../assets/hero.png';
@@ -27,12 +37,120 @@ import plumberIcon from '../assets/plumber.png';
 import painterIcon from '../assets/painter.png';
 import './LandingPage.css';
 
+const ALL_SERVICES_LIST = [
+  { name: 'Painting', category: 'Home Services', iconName: 'Paintbrush' },
+  { name: 'Electrical', category: 'Home Services', iconName: 'Zap' },
+  { name: 'Plumbing', category: 'Home Services', iconName: 'Droplet' },
+  { name: 'Furniture Assembly', category: 'Home Services', iconName: 'Component' },
+  { name: 'Home Repair', category: 'Home Services', iconName: 'Hammer' },
+  { name: 'Home Cleaning', category: 'Home Services', iconName: 'Brush' },
+  { name: 'Appliance Repair', category: 'Home Services', iconName: 'Tv' },
+  { name: 'Pest Control', category: 'Home Services', iconName: 'Bug' },
+  { name: 'Carpentry', category: 'Home Services', iconName: 'Scissors' },
+  { name: 'House Shifting', category: 'Logistics & Shifting', iconName: 'Truck' },
+  { name: 'Heavy Lifting', category: 'Logistics & Shifting', iconName: 'ArrowUp' },
+  { name: 'Local Delivery', category: 'Logistics & Shifting', iconName: 'Package' },
+  { name: 'Warehouse Support', category: 'Logistics & Shifting', iconName: 'Box' },
+  { name: 'Vehicle Rental', category: 'Logistics & Shifting', iconName: 'Car' },
+  { name: 'Courier Service', category: 'Logistics & Shifting', iconName: 'Send' },
+  { name: 'Catering Staff', category: 'Events & Entertainment', iconName: 'Utensils' },
+  { name: 'Event Planning', category: 'Events & Entertainment', iconName: 'Calendar' },
+  { name: 'Photography', category: 'Events & Entertainment', iconName: 'Camera' },
+  { name: 'Event Decoration', category: 'Events & Entertainment', iconName: 'Flower' },
+  { name: 'Bartending', category: 'Events & Entertainment', iconName: 'GlassWater' },
+  { name: 'DJ & Sound', category: 'Events & Entertainment', iconName: 'Music' },
+  { name: 'Device Repair', category: 'Tech & Digital', iconName: 'Smartphone' },
+  { name: 'Smart Home Setup', category: 'Tech & Digital', iconName: 'HomeIcon' },
+  { name: 'Network Support', category: 'Tech & Digital', iconName: 'Wifi' },
+  { name: 'Digital Marketing', category: 'Tech & Digital', iconName: 'Megaphone' },
+  { name: 'Web Development', category: 'Tech & Digital', iconName: 'Code' },
+  { name: 'App Support', category: 'Tech & Digital', iconName: 'Cpu' },
+  { name: 'Tutoring', category: 'Education & Learning', iconName: 'BookOpen' },
+  { name: 'Business Consulting', category: 'Education & Learning', iconName: 'Briefcase' },
+  { name: 'Stock Analysis', category: 'Education & Learning', iconName: 'TrendingUp' },
+  { name: 'Career Coaching', category: 'Education & Learning', iconName: 'UserCheck' },
+  { name: 'Language Training', category: 'Education & Learning', iconName: 'Languages' },
+  { name: 'Skill Training', category: 'Education & Learning', iconName: 'Award' },
+  { name: 'Pet Care', category: 'Personal & Lifestyle', iconName: 'Heart' },
+  { name: 'Gardening', category: 'Home Services', iconName: 'Sprout' },
+  { name: 'Elder Care', category: 'Personal & Lifestyle', iconName: 'HeartHandshake' },
+  { name: 'DIY Workshops', category: 'Education & Learning', iconName: 'Hammer' },
+  { name: 'Tour Guide', category: 'Personal & Lifestyle', iconName: 'Compass' },
+  { name: 'Meal Preparation', category: 'Personal & Lifestyle', iconName: 'ChefHat' },
+  { name: 'Custom Gifts', category: 'Personal & Lifestyle', iconName: 'Gift' },
+  { name: 'Fitness Training', category: 'Personal & Lifestyle', iconName: 'Dumbbell' },
+  { name: 'Home Organizing', category: 'Home Services', iconName: 'Grid' },
+  { name: 'Astrology', category: 'Personal & Lifestyle', iconName: 'Moon' },
+  { name: 'Content Writing', category: 'Personal & Lifestyle', iconName: 'PenTool' },
+  { name: 'Tailoring', category: 'Home Services', iconName: 'Scissors' }
+];
+
+const iconMap = {
+  Paintbrush, Zap, Droplet, Component, Hammer, Brush, Tv, Bug, Scissors,
+  Truck, ArrowUp, Package, Box, Car, Send, Utensils, Calendar, Camera,
+  Flower, GlassWater, Music, Smartphone, HomeIcon, Wifi, Megaphone,
+  Code, Cpu, BookOpen, Briefcase, TrendingUp, UserCheck, Languages, Award,
+  Heart, Sprout, HeartHandshake, Compass, ChefHat, Gift, Dumbbell, Grid,
+  Moon, PenTool
+};
+
 export default function LandingPage() {
   const { t, language } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [isServicesModalOpen, setIsServicesModalOpen] = useState(false);
+  const [modalSearchQuery, setModalSearchQuery] = useState('');
+
+  // Visitor lead capture popup states
+  const [isVisitorModalOpen, setIsVisitorModalOpen] = useState(false);
+  const [visitorSubmitting, setVisitorSubmitting] = useState(false);
+  const [visitorPhone, setVisitorPhone] = useState('');
+  const [visitorName, setVisitorName] = useState('');
+
+  useEffect(() => {
+    const isVisitorCaptured = localStorage.getItem('gigdial_visitor_captured') === 'true';
+    const isLoggedIn = !!user;
+    
+    if (!isLoggedIn && !isVisitorCaptured) {
+      const timer = setTimeout(() => {
+        setIsVisitorModalOpen(true);
+      }, 5000); // Trigger after 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [user]);
+
+  const handleVisitorSubmit = async (e) => {
+    e.preventDefault();
+    setVisitorSubmitting(true);
+    try {
+      await axios.post('/api/visitor-leads', { name: visitorName, phone: visitorPhone });
+      localStorage.setItem('gigdial_visitor_captured', 'true');
+      setIsVisitorModalOpen(false);
+      toast.success('Welcome to GigDial! Explore our services now.');
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || 'Failed to submit details. Please try again.');
+    } finally {
+      setVisitorSubmitting(false);
+    }
+  };
+
+  const filteredServices = ALL_SERVICES_LIST.filter(srv => 
+    srv.name.toLowerCase().includes(modalSearchQuery.toLowerCase()) ||
+    srv.category.toLowerCase().includes(modalSearchQuery.toLowerCase())
+  );
+
+  const groupedServices = filteredServices.reduce((acc, srv) => {
+    if (!acc[srv.category]) {
+      acc[srv.category] = [];
+    }
+    acc[srv.category].push(srv);
+    return acc;
+  }, {});
+
+  const filteredServicesGrouped = Object.entries(groupedServices);
 
   // Automatically redirect authenticated users to their dashboards
   useEffect(() => {
@@ -432,7 +550,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 16: More Services */}
-              <div className="service-card service-card-more" onClick={() => navigate('/services')}>
+              <div className="service-card service-card-more" onClick={() => setIsServicesModalOpen(true)}>
                 <div className="service-card-more-content">
                   <span className="more-number">+45</span>
                   <span className="more-label">More Services</span>
@@ -1007,6 +1125,123 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      {isServicesModalOpen && (
+        <div className="services-modal-overlay" onClick={() => setIsServicesModalOpen(false)}>
+          <div className="services-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="services-modal-header">
+              <h2 className="services-modal-title">All Services Available on GigDial</h2>
+              <button className="services-modal-close" onClick={() => setIsServicesModalOpen(false)}>
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div className="services-modal-search-wrapper">
+              <Search className="services-modal-search-icon" size={20} />
+              <input 
+                type="text" 
+                placeholder="Search services..." 
+                className="services-modal-search-input"
+                value={modalSearchQuery}
+                onChange={(e) => setModalSearchQuery(e.target.value)}
+              />
+            </div>
+            
+            <div className="services-modal-body">
+              {filteredServicesGrouped.map(([category, items]) => (
+                <div key={category} className="services-modal-category-section">
+                  <h3 className="services-modal-category-title">{category}</h3>
+                  <div className="services-modal-grid">
+                    {items.map((srv) => {
+                      const IconComponent = iconMap[srv.iconName] || Zap;
+                      return (
+                        <div 
+                          key={srv.name} 
+                          className="services-modal-card" 
+                          onClick={() => {
+                            setIsServicesModalOpen(false);
+                            handleServiceClick(srv.name);
+                          }}
+                        >
+                          <div className="services-modal-card-icon">
+                            <IconComponent size={24} strokeWidth={2} />
+                          </div>
+                          <span className="services-modal-card-label">{srv.name}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+              {filteredServicesGrouped.length === 0 && (
+                <div className="services-modal-no-results">
+                  No services found matching "{modalSearchQuery}"
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {isVisitorModalOpen && (
+        <div className="visitor-modal-overlay">
+          <div className="visitor-modal-content">
+            <button className="visitor-modal-close" onClick={() => setIsVisitorModalOpen(false)}>
+              <X size={20} />
+            </button>
+            <div className="visitor-modal-left">
+              <div className="visitor-modal-badge">Special Welcome!</div>
+              <h2 className="visitor-modal-title">Get the Best Local Pros Instantly</h2>
+              <p className="visitor-modal-desc">
+                Register as a visitor today and get connected with top-rated professionals in your city. Save time, pay zero commission, and get direct contacts.
+              </p>
+              <div className="visitor-modal-features">
+                <div className="visitor-feat-item">
+                  <span className="feat-check">✓</span> 1000+ Verified Experts
+                </div>
+                <div className="visitor-feat-item">
+                  <span className="feat-check">✓</span> Zero Commission Fees
+                </div>
+                <div className="visitor-feat-item">
+                  <span className="feat-check">✓</span> Direct WhatsApp/Call
+                </div>
+              </div>
+            </div>
+            
+            <div className="visitor-modal-right">
+              <h3 className="visitor-form-title">Enter Details to Continue</h3>
+              <form onSubmit={handleVisitorSubmit} className="visitor-form">
+                <div className="form-group">
+                  <label>Full Name</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Enter your name"
+                    value={visitorName}
+                    onChange={(e) => setVisitorName(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Phone Number</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    placeholder="Enter 10-digit mobile"
+                    pattern="[0-9]{10}"
+                    value={visitorPhone}
+                    onChange={(e) => setVisitorPhone(e.target.value)}
+                  />
+                </div>
+                
+                <button type="submit" className="visitor-submit-btn" disabled={visitorSubmitting}>
+                  {visitorSubmitting ? 'Registering...' : 'Get Started Now'}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
