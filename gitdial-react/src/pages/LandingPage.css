@@ -152,12 +152,16 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Scroll-reveal class (applied via JS) */
+/* =============================================
+   SCROLL REVEAL — applied by IntersectionObserver
+   ============================================= */
+
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -165,12 +169,26 @@
   transform: translateY(0);
 }
 
-/* Stagger delays for child groups */
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-.reveal-delay-5 { transition-delay: 0.5s; }
+/* Stagger delays for grouped children */
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.32s; }
+.reveal-delay-4 { transition-delay: 0.42s; }
+.reveal-delay-5 { transition-delay: 0.52s; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-left,
+  .hero-right {
+    animation: none;
+  }
+}
 
 /* Hero Section Styles */
 .hero-section {

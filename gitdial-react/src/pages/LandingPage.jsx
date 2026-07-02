@@ -299,7 +299,7 @@ export default function LandingPage() {
 
         {/* Trust Badges Row */}
         <section className="trust-badges-section">
-          <div className="trust-badges-container">
+          <div className="trust-badges-container reveal">
             {/* Badge 1: Registered Company */}
             <div className="trust-badge-item">
               <div className="trust-badge-icon-wrapper bg-green">
@@ -653,13 +653,13 @@ export default function LandingPage() {
         {/* Why Choose GigDial? Section */}
         <section className="why-choose-section" id="why-choose">
           <div className="why-choose-container">
-            <h2 className="why-choose-title">
+            <h2 className="why-choose-title reveal">
               Why Choose <span className="brand-gig">Gig</span><span className="brand-dial">Dial</span>?
             </h2>
             
             <div className="why-choose-grid">
               {/* Card 1: No Middleman */}
-              <div className="why-choose-card">
+              <div className="why-choose-card reveal reveal-delay-1">
                 <div className="why-choose-icon-wrapper">
                   <img src={noMiddlemanIcon} alt="No Middleman" className="why-choose-icon" />
                 </div>
@@ -668,7 +668,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: No Commission */}
-              <div className="why-choose-card">
+              <div className="why-choose-card reveal reveal-delay-2">
                 <div className="why-choose-icon-wrapper">
                   <img src={noCommissionIcon} alt="No Commission" className="why-choose-icon" />
                 </div>
@@ -677,7 +677,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 3: Trusted Professionals */}
-              <div className="why-choose-card">
+              <div className="why-choose-card reveal reveal-delay-3">
                 <div className="why-choose-icon-wrapper">
                   <img src={trustedProfessionalsIcon} alt="Trusted Professionals" className="why-choose-icon" />
                 </div>
@@ -699,10 +699,10 @@ export default function LandingPage() {
 
         {/* How It Works Section */}
         <section className="how-it-works-section" id="how-it-works">
-          <div className="how-it-works-title">How It Works?</div>
+          <div className="how-it-works-title reveal">How It Works?</div>
           <div className="how-it-works-container">
             {/* For Customers */}
-            <div className="how-it-works-group customers">
+            <div className="how-it-works-group customers reveal reveal-delay-1">
               <h3 className="group-title customers">For Customers</h3>
               <div className="group-row">
                 <div className="how-card">
@@ -729,7 +729,7 @@ export default function LandingPage() {
             </div>
 
             {/* For Professionals */}
-            <div className="how-it-works-group professionals" id="professionals">
+            <div className="how-it-works-group professionals reveal reveal-delay-2" id="professionals">
               <h3 className="group-title professionals">For Professionals</h3>
               <div className="group-row">
                 <div className="how-card">
@@ -759,7 +759,7 @@ export default function LandingPage() {
 
         {/* Business Growth Banner Section */}
         <section className="business-banner-section">
-          <div className="business-banner-container">
+          <div className="business-banner-container reveal">
             {/* Floating badges on the left side of the model */}
             <div className="banner-left-graphics">
               <div className="floating-graphic-card leads-card">
@@ -842,13 +842,13 @@ export default function LandingPage() {
         {/* Why Customers Love Section */}
         <section className="why-love-section" id="customers">
           <div className="why-love-container">
-            <h2 className="why-love-title">
+            <h2 className="why-love-title reveal">
               Why Customers Love <span className="brand-gig">Gig</span><span className="brand-dial">Dial</span>
             </h2>
             
             <div className="why-love-grid">
               {/* Card 1: Faster Response (Rocket) */}
-              <div className="why-love-card">
+              <div className="why-love-card reveal reveal-delay-1">
                 <div className="why-love-icon-wrapper">
                   <img src={rocketIcon} className="why-love-icon-image" alt="Faster Response Rocket" />
                 </div>
@@ -859,7 +859,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 2: Affordable Services (Rupee tag) */}
-              <div className="why-love-card">
+              <div className="why-love-card reveal reveal-delay-2">
                 <div className="why-love-icon-wrapper rupee-wrapper">
                   <div className="rupee-icon-container">
                     <img src={rupeeIcon} className="why-love-icon-image rupee-img" alt="Affordable Services" />
@@ -877,7 +877,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 3: Local Professionals (Map pin on target) */}
-              <div className="why-love-card">
+              <div className="why-love-card reveal reveal-delay-3">
                 <div className="why-love-icon-wrapper">
                   {/* Custom SVG Location target */}
                   <svg className="why-love-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -896,7 +896,7 @@ export default function LandingPage() {
               </div>
 
               {/* Card 4: Direct Communication (Chat bubble with dots) */}
-              <div className="why-love-card">
+              <div className="why-love-card reveal reveal-delay-4">
                 <div className="why-love-icon-wrapper">
                   {/* Custom SVG Chat bubble */}
                   <svg className="why-love-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -918,9 +918,9 @@ export default function LandingPage() {
         {/* Simple Pricing Section */}
         <section className="pricing-section" id="pricing">
           <div className="pricing-container">
-            <h2 className="pricing-section-title">Simple Pricing</h2>
+            <h2 className="pricing-section-title reveal">Simple Pricing</h2>
             
-            <div className="pricing-card-horizontal">
+            <div className="pricing-card-horizontal reveal reveal-delay-2">
               {/* Popular Badge */}
               <div className="popular-badge">Most Popular</div>
               
@@ -1002,9 +1002,9 @@ export default function LandingPage() {
         {/* Frequently Asked Questions Section */}
         <section className="faq-section" id="faq">
           <div className="faq-container">
-            <h2 className="faq-section-title">Frequently Asked Questions</h2>
+            <h2 className="faq-section-title reveal">Frequently Asked Questions</h2>
             
-            <div className="faq-grid">
+            <div className="faq-grid reveal reveal-delay-1">
               {/* Column 1 */}
               <div className="faq-column">
                 {/* FAQ 1 */}
